@@ -1,0 +1,22 @@
+/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */
+
+.create-account{
+    width: 100%;
+    margin: 2rem auto;
+    padding: 2rem ;
+    
+}
+
+@media screen and (max-width:800px){
+    
+    .create-account{
+        background-color: #2f4050;
+        display: flex;
+        flex-direction: column;
+    }
+    
+}
+
+.form-label{
+    font-weight: bold;
+}

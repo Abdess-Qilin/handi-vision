@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min2.css" rel="stylesheet">
+    <link href="../../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/node_modules/iCheck/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/animate.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/style.css">
+
+    <title>Handivision</title>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">IN+</h1>
+
+            </div>
+            <h2 tabindex="0">Créer un compte</h2>
+
+            <form class="m-t" role="form" action="login.html">
+                <div class="form-group">
+                    <label for="name" tabindex="0" class="label">Votre nom</label>
+                    <input type="text" class="form-control" id="name" title="Saisir ici votre nom" required="">
+                </div>
+                <div class="form-group">
+                    <label for="email" tabindex="0" class="label">Votre email </label>
+                    <p tabindex="0" class="form-group">(exemple : nom@exemple.com)</p>
+                    <input type="email" class="form-control" id="email" aria-label="Saisir ici votre email" required="">
+                </div>
+                <div class="form-group">
+                    <label class="label" tabindex="0" for="inputPassword">Votre mot de passe</label>
+                    <p tabindex="0" class="form-group">(exemple: ...)</p>
+                    <input type="password" class="form-control" id="inputPassword"
+                        aria-label="Saisir ici votre mot de passe" required="">
+                </div>
+                <div class="form-group">
+                    <div class="form-check abc-checkbox abc-checkbox-primary"
+                        aria-labelledby="checkbox-label checkbox-input">
+                        <input name="checkbox" class="form-check-input" id="checkbox" type="checkbox"
+                            aria-describedby="checkbox-input" checked="">
+
+                        <label class="form-check-label" for="checkbox" tabindex="0">
+                            J'accepte les conditions générales d’utilisation
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="label" tabindex="0">Vous êtes :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="userType" id="candidate" value="candidate"
+                            required="">
+                        <label class="form-check-label" for="candidate">Candidat</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="userType" id="recruiter" value="recruiter"
+                            required="">
+                        <label class="form-check-label" for="recruiter">Recruteur</label>
+                    </div>
+                </div>
+
+                <p class="text-muted text-center" tabindex="0">Vous avez déjà un compte?</p>
+                <a class="btn btn-sm btn-white btn-block" href="a-propos.html">Se connecter</a>
+            </form>
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="text-left col-md-8 mt-4">
+                <a href="a-propos.html" class="navy-link"
+                    aria-label="En savoir plus sur ce projet: me rendre sur A propos">Propulsé par
+                    HANDI-VISION<sup>&reg;</sup></a>
+
+            </div>
+            <div class=" text-right col-md-4 mt-4">
+                © 2008-2023
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

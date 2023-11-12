@@ -1,0 +1,17 @@
+/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */
+
+.footer-bg{
+    display: flex;
+    background-color: white;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 20px;
+}
+.copyright{
+    padding-top: 20px;
+}

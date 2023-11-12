@@ -1,0 +1,68 @@
+/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */
+
+/* .body-gray{
+    background-color: rgb(241, 241, 241);
+} */
+
+.conexion {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.con-a {
+    background-color: white;
+    border-radius: 10px 10px;
+    min-width: 10rem;
+    margin: .5rem auto;
+    padding: 1rem;
+}
+
+.con-b {
+    background-color: white;
+    border-radius: 10px 10px;
+    min-width: 10rem;
+    margin: .5rem auto;
+    padding: 1rem;
+}
+
+.con-c {
+    background-color: rgb(201, 196, 196);
+    border: gray solid 2px;
+    border-radius: 10px 10px;
+    min-width: 10rem;
+    margin: .5rem auto;
+    padding: 1rem;
+}
+
+.con-d {
+    background-color: rgb(201, 196, 196);
+    min-width: 10rem;
+    margin: .5rem auto;
+    padding: 1rem;
+}
+
+.maxwidth {
+    width: 100%;
+}
+
+@media screen and (max-width:800px) {
+
+    .conexion {
+        background-color: #2f4050;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .con-a,
+    .con-b {
+        width: 90%;
+    }
+
+    .h1font-size {
+        font-size: 2.5rem;
+    }
+}
