@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Societe from "../../../Table/Societe";
+import { apiUrl } from "../../../../config/config";
 
 
 const ListSociete = ({ societes, setSocietes, userStatut }) => {
@@ -11,7 +11,7 @@ const ListSociete = ({ societes, setSocietes, userStatut }) => {
         const token = localStorage.getItem('token');
 
         // console.log("Avant l'appel à fetch");
-        const response = await fetch('http://localhost:3000/api/companies/me', {
+        const response = await fetch(`${apiUrl}/api/companies/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

@@ -3,6 +3,7 @@ import { favoritedOffersList, removeFromFavorites } from '../../../Table/Favoris
 import logo from "../../../../images/img/image.png"; // Import de l'image du logo
 import { useState, useEffect } from 'react'; // Import de useState et useEffect depuis React
 import { Link, useHistory } from 'react-router-dom';
+import { apiUrl } from '../../../../config/config';
 
 // Définition du composant MesFavoris
 const MesFavoris = () => {
@@ -40,7 +41,7 @@ const MesFavoris = () => {
                 }),
             };
 
-            const response = await fetch('http://localhost:3000/api/candidat/removefavjoboffer', fetchOptions);
+            const response = await fetch(`${apiUrl}/api/candidat/removefavjoboffer`, fetchOptions);
             if (response.ok) {
                 // La requête s'est terminée avec succès
 
@@ -71,7 +72,7 @@ const MesFavoris = () => {
 
             // console.log("Avant l'appel à fetch");
             // Lancement de la requête fetch pour obtenir les offres favorites.
-            const response = await fetch('http://localhost:3000/api/candidat/getfavjoboffer', {
+            const response = await fetch(`${apiUrl}/api/candidat/getfavjoboffer`, {
                 method: 'GET', // Méthode HTTP utilisée pour la requête.
                 headers: {
                     // Ajout du token dans les en-têtes pour l'authentification.
@@ -108,7 +109,7 @@ const MesFavoris = () => {
             const token = localStorage.getItem('token');
 
             // Envoie une requête GET à l'API pour récupérer les données de l'utilisateur
-            const response2 = await fetch('http://localhost:3000/api/me', {
+            const response2 = await fetch(`${apiUrl}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

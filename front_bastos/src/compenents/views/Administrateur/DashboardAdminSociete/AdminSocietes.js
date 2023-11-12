@@ -12,6 +12,7 @@ import ChercherSociete from './ChercherSociete.js';
 import { Card, Button } from 'react-bootstrap';
 //import SupprimerSociete from './SupprimerSociete';
 import SupprimerElementAdmin from '../../SupprimerElement/SupprimerElementAdmin.js';
+import { apiUrl } from '../../../config/config.js';
 
 const AdminSocietes = () => {
   const [companyData, setcompanyData] = useState({});
@@ -36,8 +37,8 @@ const AdminSocietes = () => {
 
         let roadAPI;
 
-        if (shownComponent === 'readProfile') roadAPI = 'http://localhost:3000/api/admin/getcompanies/3';           // Rubrique 'Liste des societes'
-        else if (shownComponent === 'readProfileWait') roadAPI = 'http://localhost:3000/api/admin/getcompanies/1';  // Rubrique 'Societes en attente'
+        if (shownComponent === 'readProfile') roadAPI = `${apiUrl}/api/admin/getcompanies/3`;           // Rubrique 'Liste des societes'
+        else if (shownComponent === 'readProfileWait') roadAPI = `${apiUrl}/api/admin/getcompanies/1`;  // Rubrique 'Societes en attente'
 
         const response = await fetch(roadAPI, {
           method: 'GET',
@@ -82,7 +83,7 @@ const AdminSocietes = () => {
         }),
       };
 
-      const response = await fetch('http://localhost:3000/api/admin/updatecompany', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/admin/updatecompany`, fetchOptions);
 
       if (!response.ok) {
         throw new Error('Erreur lors de la validation de la société');

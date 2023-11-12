@@ -16,6 +16,7 @@ import AdminChercherCandidat from './AdminChercherCandidat.js';
 import SupprimerElementAdmin from '../../SupprimerElement/SupprimerElementAdmin.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { apiUrl } from '../../../config/config.js';
 
 
 const AdminCandidat = () => {
@@ -43,7 +44,7 @@ const AdminCandidat = () => {
           statut: 3
         }),
       };
-      const response = await fetch('http://localhost:3000/api/admin/updateuser', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/admin/updateuser`, fetchOptions);
       if (response.ok) {
         // La requête s'est terminée avec succès
         console.log("le statut a été modifié avec succès.");
@@ -70,8 +71,8 @@ const AdminCandidat = () => {
 
         let roadAPI;
 
-        if (shownComponent === 'readProfile') roadAPI = 'http://localhost:3000/api/admin/getusers/2/3';           // Rubrique 'Liste des candidats'
-        else if (shownComponent === 'readProfileWait') roadAPI = 'http://localhost:3000/api/admin/getusers/2/1';  // Rubrique 'Candidats en attente'
+        if (shownComponent === 'readProfile') roadAPI = `${apiUrl}/api/admin/getusers/2/3`;           // Rubrique 'Liste des candidats'
+        else if (shownComponent === 'readProfileWait') roadAPI = `${apiUrl}/api/admin/getusers/2/1`;  // Rubrique 'Candidats en attente'
 
         const response = await fetch(roadAPI, {
           method: 'GET',
@@ -120,7 +121,7 @@ const AdminCandidat = () => {
     const handleDownloadRqth = async (userId) => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/downloadFile/${userId}`, {
+        const response = await fetch(`${apiUrl}/downloadFile/${userId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

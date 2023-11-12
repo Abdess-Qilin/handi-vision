@@ -7,6 +7,7 @@
 import React, { useState } from "react";
 import logo from "../../images/img/image.png";
 import Header from "../../Partials/Header/Header";
+import { apiUrl } from "../../config/config.js";
 
 import FormCompteRecruteur from "./FormCompteRecruteur.js";
 import FormCompteCandidat from "./FormCompteCandidat.js";
@@ -71,7 +72,7 @@ const Inscription = () => {
         },
         body: JSON.stringify(formData),
       };
-      const response = await fetch('http://localhost:3000/api/user/register', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/user/register`, fetchOptions);
       if (response.ok) {
         // La requête s'est terminée avec succès
         console.log("Inscription réussie");

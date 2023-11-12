@@ -11,6 +11,7 @@ import logo from "../../../images/img/image.png";
 import ChercherOffre from './ChercherOffre.js';
 //import SupprimerOffre from './SupprimerOffre.js';
 import SupprimerElementAdmin from '../../SupprimerElement/SupprimerElementAdmin.js';
+import { apiUrl } from '../../../config/config.js';
 
 const AdminOffre = () => {
   const [offerData, setOfferData] = useState({});
@@ -33,8 +34,8 @@ const AdminOffre = () => {
 
         let roadAPI;
 
-        if (shownComponent === 'readProfile') roadAPI = 'http://localhost:3000/api/admin/joboffers/3';           // Rubrique 'Liste des offres d'emploi'
-        else if (shownComponent === 'readProfileWait') roadAPI = 'http://localhost:3000/api/admin/joboffers/1';  // Rubrique 'Offres d'emploi en attente'
+        if (shownComponent === 'readProfile') roadAPI = `${apiUrl}/api/admin/joboffers/3`;           // Rubrique 'Liste des offres d'emploi'
+        else if (shownComponent === 'readProfileWait') roadAPI = `${apiUrl}/api/admin/joboffers/1`;  // Rubrique 'Offres d'emploi en attente'
 
         const response = await fetch(roadAPI, {
           method: 'GET',
@@ -80,7 +81,7 @@ const AdminOffre = () => {
         }),
       };
 
-      const response = await fetch('http://localhost:3000/api/admin/updatejoboffer', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/admin/updatejoboffer`, fetchOptions);
 
       if (!response.ok) {
         throw new Error('Erreur lors de la validation de l\'offre d\'emploi');
@@ -124,7 +125,7 @@ const AdminOffre = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const roadAPI = `http://localhost:3000/api/admin/getcompanybyjoboffer/${code_entreprise}`;
+      const roadAPI = `${apiUrl}/api/admin/getcompanybyjoboffer/${code_entreprise}`;
 
       const response = await fetch(roadAPI, {
         method: 'GET',

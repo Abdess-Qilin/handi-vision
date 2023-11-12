@@ -1,4 +1,4 @@
-{/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */}
+{/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */ }
 
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import Header from "../../Partials/Header/Header";
 import logo from "../../images/img/image.png";
 import { Link } from "react-router-dom";
 import users from '../../views/Table/Users';
+
 // import { isAuthenticated, getUserRole } from '../../views/auth/Auth';
 
 const Connexion = () => {
@@ -44,7 +45,7 @@ const Connexion = () => {
           break;
         default:
           console.error('Informations de connexion incorrectes');
-          // Vous pouvez également gérer l'affichage d'un message d'erreur à l'utilisateur ici
+        // Vous pouvez également gérer l'affichage d'un message d'erreur à l'utilisateur ici
       }
     } else {
       console.error('les Informations saisis sonts incorrectes');
@@ -72,29 +73,29 @@ const Connexion = () => {
                 Votre email
               </label>
               <p tabIndex="0" className="form-group mb-3">(exemple : nom@exemple.com)</p>
-              <input 
-              type="email" 
-              className="form-control mb-3" 
-              id="email" 
-              aria-label="Saisir ici votre email" 
-              required 
-              onChange={handleEmailChange}
-              value={email}
+              <input
+                type="email"
+                className="form-control mb-3"
+                id="email"
+                aria-label="Saisir ici votre email"
+                required
+                onChange={handleEmailChange}
+                value={email}
               />
             </div>
             <div className="">
               <label htmlFor="inputPassword" className="mb-3 btn btn-primary" tabIndex="0">
                 Votre mot de passe
               </label>
-              <input 
-              type="password" 
-              className="form-control mb-3" 
-              id="inputPassword" 
-              aria-label="Saisir ici votre mot de passe" 
-              required 
-              autoComplete="current-password" 
-              onChange={handlePasswordChange}
-              value={password}
+              <input
+                type="password"
+                className="form-control mb-3"
+                id="inputPassword"
+                aria-label="Saisir ici votre mot de passe"
+                required
+                autoComplete="current-password"
+                onChange={handlePasswordChange}
+                value={password}
               />
             </div>
             <button type="submit" className="btn btn-primary btn-block maxwidth mb-3" tabIndex="0">

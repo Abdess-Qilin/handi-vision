@@ -11,6 +11,7 @@ import logo from "../../../images/img/image.png";
 import ChercherRecruteur from './ChercherRecruteur';
 //import SupprimerRecruteur from './SupprimerRecruteur';
 import SupprimerElementAdmin from '../../SupprimerElement/SupprimerElementAdmin.js';
+import { apiUrl } from '../../../config/config.js';
 
 const AdminRecruteurs = () => {
   const [userData, setUserData] = useState({});
@@ -33,8 +34,8 @@ const AdminRecruteurs = () => {
 
         let roadAPI;
 
-        if (shownComponent === 'readProfile') roadAPI = 'http://localhost:3000/api/admin/getusers/3/3';           // Rubrique 'Liste des recruteurs'
-        else if (shownComponent === 'readProfileWait') roadAPI = 'http://localhost:3000/api/admin/getusers/3/1';  // Rubrique 'Recruteurs en attente'
+        if (shownComponent === 'readProfile') roadAPI = `${apiUrl}/api/admin/getusers/3/3`;           // Rubrique 'Liste des recruteurs'
+        else if (shownComponent === 'readProfileWait') roadAPI = `${apiUrl}/api/admin/getusers/3/1`;  // Rubrique 'Recruteurs en attente'
 
         const response = await fetch(roadAPI, {
           method: 'GET',
@@ -79,7 +80,7 @@ const AdminRecruteurs = () => {
         }),
       };
 
-      const response = await fetch('http://localhost:3000/api/admin/updateuser', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/admin/updateuser`, fetchOptions);
 
       if (!response.ok) {
         throw new Error('Erreur lors de la validation du recruteur');

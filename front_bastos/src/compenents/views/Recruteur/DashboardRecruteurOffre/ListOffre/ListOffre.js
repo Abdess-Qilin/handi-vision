@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { apiUrl } from "../../../../config/config";
 
 
 const ListOffre = ({ userStatut }) => {
@@ -10,7 +11,7 @@ const ListOffre = ({ userStatut }) => {
         const token = localStorage.getItem('token');
 
         // console.log("Avant l'appel à fetch");
-        const response = await fetch('http://localhost:3000/api/joboffers/me', {
+        const response = await fetch(`${apiUrl}/api/joboffers/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

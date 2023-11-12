@@ -6,6 +6,7 @@ import logo from "../../images/img/image.png";
 import Emploi from '../Table/Emploi.js'; // Ok
 import users from '../Table/Users.js'; // Ok
 import FavoritListOffre from "./FavoritListOffre.js"; // Ok
+import { apiUrl } from "../../config/config.js";
 
 
 
@@ -98,7 +99,7 @@ function MatchOffres() {
             const token = localStorage.getItem('token');
 
             // Requête fetch pour obtenir les compétences des offres d'emploi
-            const response = await fetch('http://localhost:3000/api/getJobbCompetences', {
+            const response = await fetch(`${apiUrl}/api/getJobbCompetences`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -133,7 +134,7 @@ function MatchOffres() {
             const token = localStorage.getItem('token');
 
             // Requête fetch pour obtenir les compétences de l'utilisateur
-            const response = await fetch('http://localhost:3000/api/getCompetences/me', {
+            const response = await fetch(`${apiUrl}/api/getCompetences/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

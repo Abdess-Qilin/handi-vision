@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiUrl } from '../../../../config/config';
 
 // Le composant DocumentsCandidat
 const DocumentsCandidat = () => {
@@ -58,7 +59,7 @@ const DocumentsCandidat = () => {
                 };
 
                 // Envoie la requête
-                const response = await fetch('http://localhost:3000/api/uploadFile', fetchOptions);
+                const response = await fetch(`${apiUrl}/api/uploadFile`, fetchOptions);
 
                 if (!response.ok) {
 

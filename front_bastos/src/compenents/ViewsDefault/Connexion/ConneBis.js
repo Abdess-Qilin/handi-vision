@@ -6,72 +6,10 @@ import HeadBienvennue from "../../Partials/HeadBienvennue/HeadBienvennue";
 import Header from "../../Partials/Header/Header";
 import logo from "../../images/img/image.png";
 import { Link, useNavigate } from "react-router-dom";
-import users from '../../views/Table/Users.js';
-import jwt_decode from 'jwt-decode';
+import { apiUrl } from '../../config/config';
 
-/*const Connexion = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [redirectRole, setRedirectRole] = useState(null);
 
-  const handleLogin = async (e) => {    
-    e.preventDefault();
-    const user = users.find(user => user.email === email && user.password === password);
-  
-    if (user) {
-      switch (user.role) {
-        case 'Admin':
-          setRedirectRole('/DashboardAdmin');
-          break;
-        case 'Recruteur':
-          setRedirectRole('/DashboardRecruteur');
-          break;
-        case 'Candidat':
-          setRedirectRole('/DashboardCandidat');
-          break;
-        default:
-          console.error('Informations de connexion incorrectes');
-          // Vous pouvez également gérer l'affichage d'un message d'erreur à l'utilisateur ici
-      }
-    } else {
-      console.error('Informations de connexion incorrectes');
-      // Gérez l'affichage d'un message d'erreur à l'utilisateur ici
-    }
-  };
-  
-  
 
-//   const handleLogin = async () => {
-//     try {
-//       // Effectuez la requête au serveur pour vérifier les informations de connexion
-//       const response = await fetch('/api/login', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ email, password }),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error('Échec de la connexion');
-//       }
-
-//       const data = await response.json();
-
-//       if (data.role === 'Admin') {
-//         setRedirectRole('/DashboardAdmin');
-//       } else if (data.role === 'Recruteur') {
-//         setRedirectRole('/DashboardRecruteur');
-//       } else if (data.role === 'Candidat') {
-//         setRedirectRole('/DashboardCandidat');
-//       } else {
-//         throw new Error('Rôle inconnu');
-//       }
-//     } catch (error) {
-//       // Gérer les erreurs, par exemple, afficher un message d'erreur à l'utilisateur
-//       console.error('Erreur dans le mail ou le mot de passe, Veuillez vériffier ces champs :', error);
-//     }
-//   };*/
 
 
 const ConnexionBis = () => {
@@ -92,7 +30,7 @@ const ConnexionBis = () => {
 
 
       // Effect uez une requête POST pour envoyer les informations d'authentification au backend
-      const response = await fetch(`http://localhost:3000/api/users/login`, {
+      const response = await fetch(`${apiUrl}/api/users/login`, {
         method: 'POST', // Utilisez POST pour envoyer les données
         headers: {
           'Content-Type': 'application/json',

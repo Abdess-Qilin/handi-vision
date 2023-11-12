@@ -11,6 +11,7 @@ import logo from "../../../images/img/image.png";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { apiUrl } from "../../../config/config";
 
 const AdminProfil = () => {
   const [userData, setUserData] = useState({
@@ -28,7 +29,7 @@ const AdminProfil = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/me', {
+        const response = await fetch(`${apiUrl}/api/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -83,7 +84,7 @@ const AdminProfil = () => {
         body: JSON.stringify(data),
       }
 
-      const response = await fetch('http://localhost:3000/api/admin/updateuser', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/admin/updateuser`, fetchOptions);
 
       if (response.ok) {
 

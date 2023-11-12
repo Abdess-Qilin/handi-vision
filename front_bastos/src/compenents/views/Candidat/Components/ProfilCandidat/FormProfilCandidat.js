@@ -8,6 +8,7 @@ import ModifierProfil from "./ModifierProfil/ModifierProfil.js";
 import SupprimerProfil from "./SupprimerProfil/SupprimerProfil.js";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { apiUrl } from "../../../../config/config.js";
 
 const FormProfilCandidat = () => {
 
@@ -25,7 +26,7 @@ const FormProfilCandidat = () => {
         const token = localStorage.getItem('token');
 
         // console.log("Avant l'appel à fetch");
-        const response = await fetch('http://localhost:3000/api/me', {
+        const response = await fetch(`${apiUrl}/api/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

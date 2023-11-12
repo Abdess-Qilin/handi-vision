@@ -1,6 +1,7 @@
 {/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */ }
 
 import React, { useState } from 'react';
+import { apiUrl } from '../../../../config/config';
 
 
 function CreerSociete({ userStatut }) {
@@ -42,7 +43,7 @@ function CreerSociete({ userStatut }) {
         },
         body: JSON.stringify(nouvelleSociete),
       };
-      const response = await fetch('http://localhost:3000/api/company/register', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/company/register`, fetchOptions);
       if (response.ok) {
         // La requête s'est terminée avec succès
         console.log("Votre entreprise a été enregistrée avec succès.");

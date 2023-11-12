@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { apiUrl } from "../../../../../config/config";
 
 const ModifierProfil = ({ userData }) => {
   const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ const ModifierProfil = ({ userData }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/me/update', {
+      const response = await fetch(`${apiUrl}/api/me/update`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

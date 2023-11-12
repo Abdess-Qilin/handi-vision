@@ -5,6 +5,7 @@
 */ }
 
 import React, { useState } from "react";
+import { apiUrl } from "../../../config/config";
 
 const ChercherSociete = () => {
   const [searchData, setSearchData] = useState({
@@ -39,7 +40,7 @@ const ChercherSociete = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/getcompanies', {
+      const response = await fetch(`${apiUrl}/api/admin/getcompanies`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

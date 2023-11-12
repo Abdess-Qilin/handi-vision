@@ -1,5 +1,5 @@
 {/* OUMESSAOUD Azzedine: oumessaoud@hotmail.fr */ }
-
+import 'dotenv/config';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import './compenents/styles/styles.css';
 import './compenents/styles/gabriel.css';

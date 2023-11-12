@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { apiUrl } from '../../../../config/config';
 
 function DetailsOffre() {
 
@@ -23,7 +24,7 @@ function DetailsOffre() {
             const token = localStorage.getItem('token');
 
             // Envoie une requête GET pour récupérer les détails de l'offre
-            const response = await fetch(`http://localhost:3000/api/detailsjoboffer/${offreId}`, {
+            const response = await fetch(`${apiUrl}/api/detailsjoboffer/${offreId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

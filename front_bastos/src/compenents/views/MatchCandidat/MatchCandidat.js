@@ -6,6 +6,7 @@ import users from '../Table/Users.js';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import FavoritListCandidat from './FavoriListCandidat.js';
+import { apiUrl } from '../../config/config.js';
 
 
 
@@ -81,7 +82,7 @@ const MatchCandidates = () => {
                     // }),
                 };
 
-                const response1 = await fetch('http://localhost:3000/api/recruteur/getjoboffer', fetchOptions1);
+                const response1 = await fetch(`${apiUrl}/api/recruteur/getjoboffer`, fetchOptions1);
 
                 if (!response1.ok) {
                     throw new Error('Erreur lors de la récupération des données');
@@ -99,7 +100,7 @@ const MatchCandidates = () => {
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                const response2 = await fetch('http://localhost:3000/api/recruteur/getcandidate', fetchOptions2);
+                const response2 = await fetch(`${apiUrl}/api/recruteur/getcandidate`, fetchOptions2);
 
                 if (!response2.ok) {
                     throw new Error('Erreur lors de la récupération des données');

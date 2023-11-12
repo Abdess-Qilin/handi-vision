@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
+import { apiUrl } from '../../config/config';
 
 import logo from "../../images/img/image.png";
 
@@ -54,7 +55,7 @@ function FormCompetenceCandidat() {
             // Récupère le token d'authentification depuis le stockage local
             const token = localStorage.getItem('token');
 
-            const response2 = await fetch('http://localhost:3000/api/me', {
+            const response2 = await fetch(`${apiUrl}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

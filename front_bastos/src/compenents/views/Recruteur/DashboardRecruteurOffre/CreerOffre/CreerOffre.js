@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 //import jwt_decode from 'jwt-decode';
 //import Societe from '../../../Table/Societe.js';
+import { apiUrl } from '../../../../config/config';
 
 function CreerOffre({ /*societes,*/ userStatut }) {
   const id = localStorage.getItem('id');
@@ -37,7 +38,7 @@ function CreerOffre({ /*societes,*/ userStatut }) {
     const fetchSocietes = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/companies/me', {
+        const response = await fetch(`${apiUrl}/api/companies/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -96,7 +97,7 @@ function CreerOffre({ /*societes,*/ userStatut }) {
         },
         body: JSON.stringify(nouvelleOffre),
       };
-      const response = await fetch('http://localhost:3000/api/recruteur/formjoboffer', fetchOptions);
+      const response = await fetch(`${apiUrl}/api/recruteur/formjoboffer`, fetchOptions);
       if (response.ok) {
         // La requête s'est terminée avec succès
         console.log("Inscription réussie");

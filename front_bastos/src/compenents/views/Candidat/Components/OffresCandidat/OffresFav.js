@@ -1,6 +1,7 @@
 // Import des dépendances nécessaires
 import { faV } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect } from 'react';
+import { apiUrl } from '../../../../config/config';
 
 // Définition du composant OffresFav
 function OffresFav({ favoris, setFavoris }) {
@@ -16,7 +17,7 @@ function OffresFav({ favoris, setFavoris }) {
 
             // console.log("Avant l'appel à fetch");
             // Lancement de la requête fetch pour obtenir les offres favorites.
-            const response = await fetch('http://localhost:3000/api/candidat/getfavjoboffer', {
+            const response = await fetch(`${apiUrl}/api/candidat/getfavjoboffer`, {
                 method: 'GET', // Méthode HTTP utilisée pour la requête.
                 headers: {
                     // Ajout du token dans les en-têtes pour l'authentification.

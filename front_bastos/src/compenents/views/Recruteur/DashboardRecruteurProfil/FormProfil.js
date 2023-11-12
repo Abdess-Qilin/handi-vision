@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../../../images/img/image.png";
 import ModifierProfil from "./ModifierProfil/ModifierProfil.js";
 import SupprimerProfil from "./SupprimerProfil/SupprimerProfil.js";
+import { apiUrl } from "../../../config/config.js";
 
 const FormProfil = () => {
   const [userData, setUserData] = useState({});
@@ -24,7 +25,7 @@ const FormProfil = () => {
       try {
         const token = localStorage.getItem('token');
         // console.log("Avant l'appel à fetch");
-        const response = await fetch('http://localhost:3000/api/me', {
+        const response = await fetch(`${apiUrl}/api/me`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

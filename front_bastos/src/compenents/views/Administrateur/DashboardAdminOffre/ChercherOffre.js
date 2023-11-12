@@ -6,7 +6,7 @@
 */ }
 
 import React, { useState } from "react";
-//import Offre from "../../Table/Offre";
+import { apiUrl } from "../../../config/config";
 
 const ChercherOffre = () => {
   const [searchData, setSearchData] = useState({
@@ -39,7 +39,7 @@ const ChercherOffre = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/api/admin/getjoboffers', {
+      const response = await fetch(`${apiUrl}/api/admin/getjoboffers`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

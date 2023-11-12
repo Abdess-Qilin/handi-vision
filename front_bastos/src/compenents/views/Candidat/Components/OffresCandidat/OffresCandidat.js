@@ -3,6 +3,7 @@
 
 import CarousselCandidat from "../AccueilCandidat/DashboardCandidat";
 import { useState, useEffect } from "react";
+import { apiUrl } from "../../../../config/config";
 
 const OffreCandidat = () => {
 
@@ -67,7 +68,7 @@ const OffreCandidat = () => {
                 const token = localStorage.getItem('token');
 
                 // console.log("Avant l'appel à fetch");
-                const response = await fetch('http://localhost:3000/api/joboffers', {
+                const response = await fetch(`${apiUrl}/api/joboffers`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -83,7 +84,7 @@ const OffreCandidat = () => {
                 console.log("Après l'attente de la réponse JSON", data);
 
                 // Deuxième appel à /api/me
-                const response2 = await fetch('http://localhost:3000/api/me', {
+                const response2 = await fetch(`${apiUrl}/api/me`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

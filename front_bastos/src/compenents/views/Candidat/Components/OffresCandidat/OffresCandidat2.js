@@ -9,6 +9,7 @@ import logo from "../../../../images/img/image.png";
 import { addFavoriteOffer } from "../../../Table/FavorisTable"; // Import de la fonction pour ajouter une offre aux favoris
 import OffresFav from "./OffresFav";
 import { Link, useHistory } from 'react-router-dom';
+import { apiUrl } from "../../../../config/config";
 
 // Définition du composant OffreCandidat
 const OffreCandidat = ({ setSelectedOffers }) => {
@@ -87,7 +88,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
                 }),
             };
 
-            const response = await fetch('http://localhost:3000/api/candidat/favjoboffer', fetchOptions);
+            const response = await fetch(`${apiUrl}/api/candidat/favjoboffer`, fetchOptions);
             if (response.ok) {
                 // La requête s'est terminée avec succès
 
@@ -142,7 +143,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
                 }),
             };
 
-            const response = await fetch('http://localhost:3000/api/candidat/removefavjoboffer', fetchOptions);
+            const response = await fetch(`${apiUrl}/api/candidat/removefavjoboffer`, fetchOptions);
             if (response.ok) {
                 // La requête s'est terminée avec succès
 
@@ -206,7 +207,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
             const token = localStorage.getItem('token');
 
             // Envoie une requête GET pour récupérer les offres
-            const response = await fetch('http://localhost:3000/api/joboffers', {
+            const response = await fetch(`${apiUrl}/api/joboffers`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -225,7 +226,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
             console.log("Après l'attente de la réponse JSON", data);
 
             // Deuxième appel à /api/me pour récupérer d'autres données si nécessaire
-            const response2 = await fetch('http://localhost:3000/api/me', {
+            const response2 = await fetch(`${apiUrl}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -256,7 +257,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
             const token = localStorage.getItem('token');
 
             // Envoie une requête GET pour récupérer les offres (est-ce une erreur ?)
-            const response = await fetch('http://localhost:3000/api/joboffers', {
+            const response = await fetch(`${apiUrl}/api/joboffers`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -275,7 +276,7 @@ const OffreCandidat = ({ setSelectedOffers }) => {
             console.log("Après l'attente de la réponse JSON", data);
 
             // Deuxième appel à /api/me pour récupérer le statut
-            const response2 = await fetch('http://localhost:3000/api/me', {
+            const response2 = await fetch(`${apiUrl}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
