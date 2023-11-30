@@ -178,7 +178,7 @@ function MatchOffres() {
             // Récupère le token d'authentification depuis le stockage local
             const token = localStorage.getItem('token');
 
-            const response2 = await fetch('http://localhost:3000/api/me', {
+            const response2 = await fetch(`${apiUrl}/api/me`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

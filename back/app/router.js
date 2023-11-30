@@ -9,6 +9,8 @@ import adminController from './controllers/adminController.js';
 import { roleCheck } from './midleware/roleCheck.js';
 import { jwtGuard } from './midleware/jwtGuard.js';
 import { upload } from './midleware/storageFiles.js';
+import { uploadProfilePicture } from './midleware/storageProfilePhotos.js';
+import { uploadcv } from './midleware/storagecv.js';
 import uploadController from './controllers/uploadController.js';
 import competencesController from './controllers/competencesController.js';
 import formJobOfferController from './controllers/formJobOfferController.js';
@@ -23,6 +25,8 @@ code_role 4 => administarteur */
 
 router.post('/api/user/register', usersController.setUser);
 router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), usersController.uploadFile);
+
+
 router.post('/api/users/login', authController.login);
 router.get('/api/users', jwtGuard, roleCheck([3, 4]), usersController.getUsers);
 router.get('/api/me', jwtGuard, authController.me);
@@ -57,8 +61,16 @@ router.get('/api/detailsjoboffer/:offerId', jwtGuard, roleCheck([2]), jobOfferCo
 router.get('/api/admin/getcompanies/:statut', jwtGuard, roleCheck([4]), adminController.getCompaniesByStatut);
 router.get('/api/admin/getcompanybyjoboffer/:codecompany', jwtGuard, roleCheck([4]), adminController.getCompanyByJobOffer);
 
+//// upload et recuperation de fichier
 router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), uploadController.uploadFile);
-router.get('/downloadFile/:candidatId', jwtGuard, roleCheck([4]), uploadController.getFile);
+router.get('/downloadFile/:candidatId', jwtGuard, roleCheck([2, 3, 4]), uploadController.getFile);
+
+router.post('/api/upload/profile/photo', jwtGuard, uploadProfilePicture.single('photo'), uploadController.uploadProfilePicture);
+router.get('/download/profile/photo/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getprofilePhoto);
+
+router.post('/api/upload/cv', jwtGuard, uploadcv.single('cv'), uploadController.uploadcv);
+router.get('/download/cv/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getUserCv);
+
 
 router.get('/api/getJobbCompetences', jwtGuard, roleCheck([2]), competencesController.getCompetences);
 router.get('/api/getCompetences/me', jwtGuard, roleCheck([2]), competencesController.getUserCompetence);

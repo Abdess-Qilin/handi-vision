@@ -79,6 +79,13 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
 
     },
+    photo_profile: {
+        type: DataTypes.STRING,
+    },
+
+    cv: {
+        type: DataTypes.STRING,
+    }
 
 
 }, {

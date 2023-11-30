@@ -80,7 +80,7 @@ const AdminRecruteurs = () => {
         }),
       };
 
-      const response = await fetch(`${apiUrl}/api/admin/updateuser`, fetchOptions);
+      const response = await fetch('http://localhost:3000/api/admin/updateuser', fetchOptions);
 
       if (!response.ok) {
         throw new Error('Erreur lors de la validation du recruteur');

@@ -33,7 +33,7 @@ const queries = data.toString();
 
 // Defini le port selon la valeur de la variable d'environnement PORT
 // ou le port 3000 si cette derniere est vide
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3010
 const dbPort = process.env.DB_PORT;
 console.log(`Le port de la base de données est : ${dbPort}`);
 
