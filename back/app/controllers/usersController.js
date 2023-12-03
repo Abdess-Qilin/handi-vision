@@ -38,7 +38,7 @@ const usersController = {
     setUser: function (req, res) {
 
 
-        console.log(req.body.email)
+        /* console.log(req.body.email) */
         const options = { minLength: 5, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 };
 
         if (!validator.isStrongPassword(req.body.mot_de_passe, options)) {
@@ -73,7 +73,7 @@ const usersController = {
                 data.code_role = 4;
             }
 
-            console.log(data.code_role)
+            c/* onsole.log(data.code_role) */
 
             try {
                 const users = await User.create({

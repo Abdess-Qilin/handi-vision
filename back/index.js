@@ -33,11 +33,14 @@ const queries = data.toString();
 
 // Defini le port selon la valeur de la variable d'environnement PORT
 // ou le port 3000 si cette derniere est vide
-const port = process.env.PORT || 3010
+const port = process.env.PORT || 3000
 const dbPort = process.env.DB_PORT;
 console.log(`Le port de la base de données est : ${dbPort}`);
 
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/uploads/profile/picture', express.static(__dirname + '/app/uploads/profile'));
+console.log(`le dirname est : ${__dirname}`)
+
 
 
 

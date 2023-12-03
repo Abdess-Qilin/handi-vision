@@ -12451,3 +12451,18 @@ body.md-skin {
   color: inherit;
   /* La couleur du texte du bouton lorsque non favori */
 }
+
+.carte-arrondie {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.contour {
+  /*  border: solid 2px red; */
+}
+
+.edit_color {
+  color: #F28500;
+}

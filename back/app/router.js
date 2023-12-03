@@ -24,7 +24,7 @@ code_role 3 => recruteur
 code_role 4 => administarteur */
 
 router.post('/api/user/register', usersController.setUser);
-router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), usersController.uploadFile);
+/* router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), usersController.uploadFile); */
 
 
 router.post('/api/users/login', authController.login);
@@ -66,7 +66,7 @@ router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), uploadController
 router.get('/downloadFile/:candidatId', jwtGuard, roleCheck([2, 3, 4]), uploadController.getFile);
 
 router.post('/api/upload/profile/photo', jwtGuard, uploadProfilePicture.single('photo'), uploadController.uploadProfilePicture);
-router.get('/download/profile/photo/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getprofilePhoto);
+router.get('/download/profile/photo/:userId', /* jwtGuard, roleCheck([2, 4]), */ uploadController.getprofilePhoto);
 
 router.post('/api/upload/cv', jwtGuard, uploadcv.single('cv'), uploadController.uploadcv);
 router.get('/download/cv/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getUserCv);

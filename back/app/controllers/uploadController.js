@@ -61,6 +61,8 @@ const uploadController = {
 
 
     uploadProfilePicture: async function (req, res) {
+        console.log('premiere entree')
+        console.log('photo :', req.file);
 
         if (req.file) {
             console.log('photo :', req.file);
@@ -78,11 +80,11 @@ const uploadController = {
                     }
                 );
 
-                console.log('Champ "rqth" mis à jour pour l\'utilisateur.');
+                console.log('Champ "photo" mis à jour pour l\'utilisateur.');
 
 
             } catch (error) {
-                console.error('Erreur lors de la mise à jour du champ "rqth" :', error);
+                console.error('Erreur lors de la mise à jour du champ "photo" :', error);
             }
         } else {
             console.log('Aucun fichier téléchargé.');
@@ -91,7 +93,8 @@ const uploadController = {
 
     getprofilePhoto: async function (req, res) {
         const userId = req.params.userId;
-
+        console.log('voici l\'utilisateur:')
+        console.log(userId)
         const user = await User.findByPk(userId);
         console.log('test user: ')
         console.log(user)

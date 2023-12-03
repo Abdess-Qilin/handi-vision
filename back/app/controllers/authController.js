@@ -9,7 +9,7 @@ const authController = {
     login: async function (req, res) {
         const { email, mot_de_passe } = req.body;
         const secretKey = process.env.SECRET_KEY
-        console.log(req.body.mot_de_pass)
+        /*  console.log(req.body.mot_de_pass) */
 
         try {
             const user = await User.authenticate(email, mot_de_passe);

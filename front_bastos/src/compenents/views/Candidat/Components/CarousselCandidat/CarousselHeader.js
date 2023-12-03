@@ -10,6 +10,7 @@ import DocumentsCandidat from "../DocumentsCandidats/DocumentsCandidat"; // Ok
 import OffreCandidat from "../OffresCandidat/OffresCandidat2"; // Ok
 import MatchOffres from "../../../MatchOffre/MatchOffre";
 import MesFavoris from "../OffresCandidat/MesFavoris"; // Ok
+import MonProfilCandidat2 from "../ProfilCandidat/Monprofil2";
 
 // Import de fonctions et données depuis d'autres fichiers
 import { favoritedOffersList, removeFromFavorites } from '../../../Table/FavorisTable';
@@ -64,7 +65,7 @@ const CarousselCandidatH = () => {
             case "Profil":
 
                 // Affiche le composant MonProfilCandidat si "Profil" est sélectionné
-                return <MonProfilCandidat />;
+                return <MonProfilCandidat2 />;
 
             case "Offres":
 
