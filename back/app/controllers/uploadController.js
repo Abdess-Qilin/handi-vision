@@ -131,7 +131,7 @@ const uploadController = {
             const userId = req.user.id; // Utilisez votre propre méthode d'authentification pour obtenir l'ID de l'utilisateur
 
             try {
-                // Mettez à jour le champ rqth pour l'utilisateur spécifié
+                // Mettez à jour le champ cv pour l'utilisateur spécifié
                 const updatedUser = await User.update(
                     { cv: fileName },
                     {

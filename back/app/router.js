@@ -31,6 +31,7 @@ router.post('/api/users/login', authController.login);
 router.get('/api/users', jwtGuard, roleCheck([3, 4]), usersController.getUsers);
 router.get('/api/me', jwtGuard, authController.me);
 router.patch('/api/me/update', jwtGuard, updateController.updateUser);
+router.delete('/api/me/deleteprofile', jwtGuard, usersController.deleteProfile);
 router.post('/api/company/register', jwtGuard, roleCheck([3, 4]), companiesController.setCompany);
 router.get('/api/companies', jwtGuard, roleCheck([4]), companiesController.getCompanies);
 router.get('/api/companies/me', jwtGuard, companiesController.getUserCompanies);

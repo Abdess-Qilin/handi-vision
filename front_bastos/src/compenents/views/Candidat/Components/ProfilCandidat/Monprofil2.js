@@ -1,17 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Modal, Form, Row, Col } from "react-bootstrap";
 import { apiUrl } from "../../../../config/config";
+import { useNavigate } from 'react-router-dom';
 
 const MonProfilCandidat2 = () => {
     const [userData, setUserData] = useState({});
     const [profilPicture, setProfilPicture] = useState('');
     const [uploadProfilPicture, setUploadProfilPicture] = useState(null);
+    const [updateProfle, setUpdateProfle] = useState({
+        nom: "",
+        prenom: "",
+        numero_telephone: "",
+    })
 
 
     const [showModal, setShowModal] = useState(false);
+    const [showModalUpdate, setShowModalUpdate] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
 
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
+
+    const handleShowModalUpdate = () => setShowModalUpdate(true);
+    const handleCloseModalUpdate = () => setShowModalUpdate(false);
+
+    const handleShowModalDelete = () => setShowModalDelete(true);
+    const handleCloseModalDelete = () => setShowModalDelete(false);
 
 
     const fetchDataFromAPI = async () => {
@@ -121,6 +135,91 @@ const MonProfilCandidat2 = () => {
         }
     };
 
+    const handleInputChange = (e) => {
+        const token = localStorage.getItem('token');
+        const fieldName = e.target.name;
+        const fieldValue = e.target.value;
+
+        // Copiez l'objet formData actuel dans un nouvel objet pour éviter la mutation directe de l'état
+        const updatedFormData = { ...updateProfle };
+
+        // Mettez à jour la valeur du champ approprié dans l'objet mis à jour
+        updatedFormData[fieldName] = fieldValue;
+
+
+        // Mettez à jour l'état avec le nouvel objet mis à jour
+        setUpdateProfle(updatedFormData);
+
+    }
+
+    async function handlesubmitUpdate(e) {
+        e.preventDefault();
+        const token = localStorage.getItem('token');
+
+
+        try {
+
+            const response = await fetch(`${apiUrl}/api/me/update`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+
+                body: JSON.stringify(updateProfle),
+
+            })
+            console.log('test2')
+
+            if (response.ok) {
+                console.log("information modifie");
+
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    async function handlesubmitDelete(e) {
+        e.preventDefault();
+        console.log('ok')
+        const userId = localStorage.getItem('id');
+
+        try {
+            const response = await fetch(`${apiUrl}/api/me/deleteprofile`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: userId }),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+
+                if (result.success) {
+                    // Afficher une alerte de confirmation
+                    alert(result.message);
+
+                    // Rediriger vers la page d'accueil
+                    history.push('/');
+                } else {
+                    // Afficher une alerte d'erreur
+                    alert(result.error);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            // Afficher une alerte d'erreur en cas d'échec de la requête
+            alert('Une erreur est survenue lors de la suppression du profil.');
+        }
+    }
+
+
+
 
 
     useEffect(() => {
@@ -197,13 +296,62 @@ const MonProfilCandidat2 = () => {
                     </div>
                 </Container>
                 <Container>
-                    <Button className="btn btn-success">
+                    <Button className="btn btn-success" onClick={handleShowModalUpdate}>
                         Modifier Profil
                     </Button>
 
-                    <Button className="btn btn-danger">
+                    <Modal className="modale_update" show={showModalUpdate} onHide={handleCloseModalUpdate}>
+                        <Modal.Header closeButton>
+                            <Modal.Title> Modifier Profil</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {/* Ajoutez votre formulaire de téléchargement de photo ici */}
+                            <Form>
+                                <Form.Group controlId="formNom">
+                                    <Form.Label>Nom</Form.Label>
+                                    <Form.Control type="text" placeholder="Entrez votre nom" name='nom' onChange={handleInputChange} />
+                                </Form.Group>
+
+                                <Form.Group controlId="formPrenom">
+                                    <Form.Label>Prénom</Form.Label>
+                                    <Form.Control type="text" placeholder="Entrez votre prénom" name='prenom' onChange={handleInputChange} />
+                                </Form.Group>
+
+                                <Form.Group controlId="formNumeroTelephone">
+                                    <Form.Label>Numéro de téléphone</Form.Label>
+                                    <Form.Control type="tel" placeholder="Entrez votre numéro de téléphone" name='numero_telephone' onChange={handleInputChange} />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={handlesubmitUpdate}>
+                                Mettre a jour
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+                    <Button className="btn btn-danger" onClick={handleShowModalDelete}>
                         Supprimer profil
                     </Button>
+                    <Modal show={showModalDelete} onHide={handleCloseModalDelete} className="modale_update">
+                        <Modal.Header closeButton>
+                            <Modal.Title>
+                                <span role="img" aria-label="Supprimer">
+                                    🗑️
+                                </span>{' '}
+                                Supprimer Profil
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            Êtes-vous sûr de vouloir supprimer votre profil? Cette action est irréversible.
+                        </Modal.Body>
+                        <Modal.Footer>
+
+                            <Button variant="danger" onClick={handlesubmitDelete}>
+                                Supprimer profil
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
 
                 </Container>
 

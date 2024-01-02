@@ -1,4 +1,5 @@
 -- SQLBook: Code
+
 COMMIT;
 
 START TRANSACTION;
@@ -53,6 +54,8 @@ CREATE TABLE
         rqth VARCHAR(255),
         code_role INT,
         statut INT,
+        photo_profile VARCHAR(255),
+        cv VARCHAR(255),
         FOREIGN KEY (code_role) REFERENCES Role(id)
     );
 
@@ -90,7 +93,8 @@ CREATE TABLE
         code_utilisateur INT,
         code_entreprise INT,
         statut INT,
-        FOREIGN KEY (code_entreprise) REFERENCES Entreprise(id)
+        descrpiption VARCHAR(2000),
+        email_candidature varchar(255) FOREIGN KEY (code_entreprise) REFERENCES Entreprise(id)
     );
 
 CREATE TABLE

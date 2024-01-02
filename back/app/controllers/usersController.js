@@ -73,7 +73,7 @@ const usersController = {
                 data.code_role = 4;
             }
 
-            c/* onsole.log(data.code_role) */
+            /* onsole.log(data.code_role) */
 
             try {
                 const users = await User.create({
@@ -124,6 +124,27 @@ const usersController = {
              res.status(500).json(e.message) 
          }
      } */
+
+    deleteProfile: async function (req, res) {
+        const userId = req.body.id;
+        try {
+            const deletedRows = await User.destroy({
+                where: { id: userId }
+            });
+
+            if (deletedRows > 0) {
+                console.log(`Utilisateur avec l'ID ${userId} supprimé avec succès.`);
+                res.json({ success: true, message: 'Utilisateur supprimé avec succès.' });
+            } else {
+                console.log(`Aucun utilisateur trouvé avec l'ID ${userId}.`);
+                res.status(404).json({ success: false, error: 'Utilisateur non trouvé.' });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la suppression de l\'utilisateur :', error);
+            res.status(500).json({ success: false, error: 'Une erreur est survenue lors de la suppression de l\'utilisateur.' });
+        }
+    }
+
 }
 
 function displayError(err, res) {

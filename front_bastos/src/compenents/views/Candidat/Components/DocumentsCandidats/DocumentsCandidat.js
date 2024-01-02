@@ -7,14 +7,22 @@ const DocumentsCandidat = () => {
     // Utilisation du Hook useState pour gérer l'état du fichier sélectionné
     const [selectedFile, setSelectedFile] = useState(null);
 
+    const [selectedCV, setSelectedCV] = useState(null);
+
     // Utilisation du Hook useState pour gérer l'état du nom du fichier
     const [fileName, setFileName] = useState("");
+
+    const [fileNameCV, setFileNameCV] = useState("");
 
     // Utilisation du Hook useState pour gérer l'état de la progression du téléchargement
     const [uploadProgress, setUploadProgress] = useState(0);
 
+    const [uploadProgressCV, setUploadProgressCV] = useState(0);
+
     // Utilisation du Hook useState pour gérer l'état de la soumission du fichier
     const [isFileSubmitted, setIsFileSubmitted] = useState(false);
+
+    const [isFileSubmittedCV, setIsFileSubmittedCV] = useState(false);
 
 
     // Cette fonction est appelée lorsque l'utilisateur soumet le formulaire
@@ -97,6 +105,83 @@ const DocumentsCandidat = () => {
         }
     };
 
+    const handleFileSubmitCV = async (e) => {
+        // Empêche le comportement par défaut du formulaire (rechargement de la page)
+        e.preventDefault();
+
+        // Crée un nouvel objet FormData
+        const formData = new FormData();
+
+        // Ajoute le fichier sélectionné à formData sous le nom 'cv'
+        formData.append('cv', selectedCV);
+
+        // Vérifie si un fichier a été sélectionné
+        if (selectedCV) {
+
+            // Simule la progression du téléchargement du fichier
+            for (let i = 0; i <= 100; i += 10) {
+                setTimeout(() => setUploadProgressCV(i), 1000);
+            }
+
+            // Envoie formData au serveur via une requête HTTP (par exemple, une requête POST) pour traiter le fichier côté serveur
+            try {
+
+                // Récupère le token de l'utilisateur à partir du localStorage
+                const token = localStorage.getItem('token');
+
+                let fetchOptions = {
+
+                    // Méthode de la requête
+                    method: 'POST',
+
+                    headers: {
+
+                        // Ajoute le token à l'en-tête de la requête
+                        'Authorization': `Bearer ${token}`,
+                    },
+
+                    // Corps de la requête
+                    body: formData,
+                };
+
+                // Envoie la requête
+                const response = await fetch(`${apiUrl}/api/upload/cv`, fetchOptions);
+
+                if (!response.ok) {
+
+                    // Si la requête échoue
+                    console.error('Erreur lors de la requête :', response.status, response.statusText);
+                } else {
+
+                    // Si la requête réussit, définit le statut de soumission du fichier à vrai
+                    setIsFileSubmittedCV(true);
+                }
+
+                // Attrape les erreurs éventuelles lors de l'envoi de la requête
+            } catch (error) {
+                console.log('Erreur Fetch: ', error);
+            }
+        } else { // Si aucun fichier n'a été sélectionné
+            console.log('Aucun fichier sélectionné.');
+        }
+    }
+
+    const handleChangeCV = (e) => {
+        // Récupère le fichier à partir de l'événement
+        const file = e.target.files[0];
+        console.log(file)
+
+        // Si un fichier a été sélectionné
+        if (file) {
+
+            // Met à jour l'état selectedFile avec le fichier sélectionné
+            setSelectedCV(file);
+
+            // Met à jour l'état fileName avec le nom du fichier sélectionné
+            setFileNameCV(file.name);
+        }
+    }
+
 
     return (
         <div>
@@ -143,6 +228,52 @@ const DocumentsCandidat = () => {
 
                                 {/* Message de succès après la soumission du fichier */}
                                 {isFileSubmitted && <div className="alert alert-success mt-3" role="alert">Fichier envoyé avec succès!</div>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* formulaire cv */}
+            <div className="m-3">
+
+                {/* Ligne pour le centrage du contenu */}
+                <div className="row justify-content-center">
+
+                    {/* Colonne pour la largeur du contenu, ici pour des écrans medium */}
+                    <div className="col-md-6">
+
+                        {/* Carte contenant le formulaire */}
+                        <div className="card shadow">
+
+                            {/* Corps de la carte */}
+
+                            {/* Sous-titre pour la spécification du document à télécharger */}
+                            <h3 className="text-dark mb-3 text-center fw-bold">CV</h3>
+                            <div className="card-body text-center">
+
+                                {/* Formulaire pour le téléchargement de fichier */}
+                                <form onSubmit={handleFileSubmitCV} encType="multipart/form-data">
+
+                                    {/* Champ de sélection de fichier, limité aux fichiers PDF */}
+                                    <div className="mb-5">
+                                        <input className="form-control" type="file" accept=".pdf" name="cv" onChange={handleChangeCV} />
+
+                                        {/* Afficher le nom du fichier sélectionné */}
+                                        <p className="mt-4">{fileNameCV}</p>
+
+                                        {/* Barre de progression pour le téléchargement du fichier */}
+                                        <div className="progress mt-2">
+                                            <div className="progress-bar" role="progressbar" style={{ width: `${uploadProgressCV}%` }} aria-valuenow={uploadProgressCV} aria-valuemin="0" aria-valuemax="100">{uploadProgressCV}%</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Bouton pour soumettre le formulaire */}
+                                    <button className="btn btn-primary" type="submit">Envoyer</button>
+                                </form>
+
+                                {/* Message de succès après la soumission du fichier */}
+                                {isFileSubmittedCV && <div className="alert alert-success mt-3" role="alert">Fichier envoyé avec succès!</div>}
                             </div>
                         </div>
                     </div>
