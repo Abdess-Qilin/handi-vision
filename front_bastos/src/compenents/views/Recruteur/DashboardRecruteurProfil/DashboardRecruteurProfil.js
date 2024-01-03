@@ -1,4 +1,4 @@
-{/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */}
+{/* <p> OUMESSAOUD Azzedine: oumessaoud@hotmail.fr</p>  */ }
 
 import React from 'react';
 
@@ -9,12 +9,12 @@ const DashboardRecruteurProfil = () => {
 
     return (
         <>
-            <FormProfil/>
-            
+            <FormProfil />
+
         </>
     );
-    
-    
+
+
 }
 
 export default DashboardRecruteurProfil;

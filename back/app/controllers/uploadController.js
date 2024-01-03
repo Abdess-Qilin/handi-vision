@@ -99,9 +99,13 @@ const uploadController = {
         console.log('test user: ')
         console.log(user)
 
+        // Si l'utilisateur n'a pas de photo de profil ou l'utilisateur n'existe pas, gérer ce cas
+        if (!user || !user.photo_profile) {
+            // Peut-être renvoyer une image par défaut ou une erreur
+            return res.status(404).send('Aucune photo de profil pour cet utilisateur.');
+        }
 
-
-        const completpath = "C:/Users/home/Desktop/handi-vision/handi-vision/back/app/uploads/profile"
+        const completpath = "C:/Users/home/Desktop/handi-vision/handi-vision/back/app/uploads/profile";
         const filePath = path.join(completpath, user.photo_profile); // Chemin du fichier sur le serveur
 
         // Vérifiez si le fichier existe

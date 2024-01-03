@@ -67,7 +67,7 @@ const FormProfilCandidat = () => {
             <div className="col-md-6 mb-2 mx-auto">
               <div className="mb-3">
                 <p className="btn btn-primary form-label col-md-12 col-12">
-                  Nom: {userData.nom}
+                  Nom6: {userData.nom}
                 </p>
               </div>
               <div className="mb-3">

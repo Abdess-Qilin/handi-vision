@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Modal, Form, Row, Col } from "react-bootstrap";
-import { apiUrl } from "../../../../config/config";
+import { apiUrl } from "../../../config/config";
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 
-const MonProfilCandidat2 = () => {
+
+const ProfilRecruteur = () => {
     const [userData, setUserData] = useState({});
     const [profilPicture, setProfilPicture] = useState('');
     const [uploadProfilPicture, setUploadProfilPicture] = useState(null);
@@ -247,7 +248,7 @@ const MonProfilCandidat2 = () => {
                     <Row>
                         <Col>
                             <Button className="mt-2" onClick={handleShowModal} >
-                                telecharger photo
+                                telecharger logo
                             </Button>
                         </Col>
                     </Row>
@@ -366,4 +367,4 @@ const MonProfilCandidat2 = () => {
 
 }
 
-export default MonProfilCandidat2;
+export default ProfilRecruteur;

@@ -8,9 +8,9 @@ import DashboardRecruteurOffre from "../../views/Recruteur/DashboardRecruteurOff
 import Caroussel from "../../ViewsDefault/Caroussel/Caroussel.js";
 import FormProfil from "../../views/Recruteur/DashboardRecruteurProfil/FormProfil.js";
 import FormCandidat from "../../views/Recruteur/DashboardRecruteurCandidat/FormCandidat.js";
+import ProfilRecruteur from "../../views/Recruteur/DashboardRecruteurProfil/ProfilRecruteur.js";
 import ListSociete from "../../views/Recruteur/DashboardRecruteurSociete/ListSociete/ListSociete.js";
 import { useNavigate } from 'react-router-dom';
-
 
 const HeadCaroussel = () => {
 
@@ -47,7 +47,9 @@ const HeadCaroussel = () => {
   const renderSelectedContent = () => {
     switch (selectedButton) {
       case "Profil":
-        return <FormProfil />;
+        return <ProfilRecruteur />;
+
+
       case "Sociétés":
 
         return <DashboardRecruteurSociete /* nouvelleSociete={nouvelleSociete} setNouvelleSociete={setNouvelleSociete}*/ societes={societes} setSocietes={setSocietes} />;

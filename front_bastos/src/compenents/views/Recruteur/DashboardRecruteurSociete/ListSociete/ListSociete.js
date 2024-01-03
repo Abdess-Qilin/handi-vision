@@ -1,9 +1,45 @@
 import React, { useState, useEffect } from "react";
 import { apiUrl } from "../../../../config/config";
 
-
+import { Container, Button, Modal, Form } from "react-bootstrap";
 const ListSociete = ({ societes, setSocietes, userStatut }) => {
   /*  const [societes, setSocietes] = useState([]); */
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const handleShowModalUpdate = () => setShowModalUpdate(true);
+  const handleCloseModalUpdate = () => setShowModalUpdate(false);
+
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const handleShowModalDelete = () => setShowModalDelete(true);
+  const handleCloseModalDelete = () => setShowModalDelete(false);
+
+  const handleInputChange = (e) => {
+    const token = localStorage.getItem('token');
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+
+    // Copiez l'objet formData actuel dans un nouvel objet pour éviter la mutation directe de l'état
+    const updatedFormData = { ...updateProfle };
+
+    // Mettez à jour la valeur du champ approprié dans l'objet mis à jour
+    updatedFormData[fieldName] = fieldValue;
+
+
+    // Mettez à jour l'état avec le nouvel objet mis à jour
+    setUpdateProfle(updatedFormData);
+
+  }
+
+  async function handlesubmitUpdate(e) {
+    e.preventDefault();
+    console.log('ok')
+
+  }
+
+  async function handlesubmitDelete(e) {
+    e.preventDefault();
+    console.log('ok')
+  }
+
   useEffect(() => {
     const fetchSocietes = async () => {
 
@@ -63,6 +99,94 @@ const ListSociete = ({ societes, setSocietes, userStatut }) => {
                       <p className="btn btn-primary col-12">Code NAF principal : {data.code_NAF_principal}</p>
                       <p className="btn btn-primary col-12">Politique télétravail : {data.politique_teletravail}</p>
                       {/* Affichez d'autres données de la société si nécessaire */}
+                      <button className="btn btn-info m-1" type="submit" onClick={handleShowModalUpdate}>Modifier</button>
+
+                      <Modal className="modale_update" show={showModalUpdate} onHide={handleCloseModalUpdate}>
+                        <Modal.Header closeButton>
+                          <Modal.Title> Modifier Profil</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          {/* Ajoutez votre formulaire de téléchargement de photo ici */}
+                          <Form>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Nom de l'entreprise</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez le Nom de l'entreprise" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+
+                            <Form.Group controlId="formPrenom">
+                              <Form.Label>Secteur d'activité </Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Secteur d'activité " name='prenom' onChange={handleInputChange} />
+                            </Form.Group>
+
+                            <Form.Group controlId="formNumeroTelephone">
+                              <Form.Label>Raison sociale</Form.Label>
+                              <Form.Control type="tel" placeholder="Entrez Raison sociale" name='numero_telephone' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Statut juridique</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Statut juridique" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Téléphone</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Téléphone" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Adresse </Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Adresse " name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Effectif</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Effectif" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Adresse e-mail</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Adresse e-mail" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Site web</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Site web" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Réseaux sociaux</Form.Label>
+                              <Form.Control type="text" placeholder="Réseaux sociaux" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Code NAF principal</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Code NAF principal" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                            <Form.Group controlId="formNom">
+                              <Form.Label>Politique télétravail</Form.Label>
+                              <Form.Control type="text" placeholder="Entrez Politique télétravail" name='nom' onChange={handleInputChange} />
+                            </Form.Group>
+                          </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="primary" onClick={handlesubmitUpdate}>
+                            Mettre a jour
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+
+                      <button className="btn btn-danger m-1" type="submit" onClick={handleShowModalDelete}>Supprimer</button>
+                      <Modal show={showModalDelete} onHide={handleCloseModalDelete} className="modale_update">
+                        <Modal.Header closeButton>
+                          <Modal.Title>
+                            <span role="img" aria-label="Supprimer">
+                              🗑️
+                            </span>{' '}
+                            Supprimer Société
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          Êtes-vous sûr de vouloir supprimer cette société? Cette action est irréversible.
+                        </Modal.Body>
+                        <Modal.Footer>
+
+                          <Button variant="danger" onClick={handlesubmitDelete}>
+                            Supprimer profil
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
                     </div>
                   </div>
                 ))}
