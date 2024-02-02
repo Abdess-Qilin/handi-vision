@@ -49,7 +49,6 @@ const HeadCaroussel = () => {
       case "Profil":
         return <ProfilRecruteur />;
 
-
       case "Sociétés":
 
         return <DashboardRecruteurSociete /* nouvelleSociete={nouvelleSociete} setNouvelleSociete={setNouvelleSociete}*/ societes={societes} setSocietes={setSocietes} />;

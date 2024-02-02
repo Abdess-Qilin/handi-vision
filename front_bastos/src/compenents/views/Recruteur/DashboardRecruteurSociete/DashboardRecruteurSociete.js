@@ -60,18 +60,14 @@ const DashboardRecruteurSociete = ({ /* nouvelleSociete, setNouvelleSociete, */ 
         composantAffiche = <ListSociete societes={societes} setSocietes={setSocietes} userStatut={userStatut} />;
     } else if (action === 'creer') {
         composantAffiche = <CreerSociete userStatut={userStatut} />;
-    } else if (action === 'modifier') {
-        composantAffiche = <ModifierSociete userStatut={userStatut} />;
-    } else if (action === 'supprimer') {
-        composantAffiche = <SupprimerSociete />;
     }
-
     return (
         <>
 
             {/* Boutons pour changer l'action */}
+
             <div className="container">
-                <div className="row col-12">
+                <div className="row col-12 d-flex justify-content-center">
                     <div className="col-md-3">
                         <button className="btn btn-info col-12 m-2 " type="button" aria-expanded="false" onClick={() => handleActionChange('list')}>
                             Liste de Mes Sociétés
@@ -82,18 +78,11 @@ const DashboardRecruteurSociete = ({ /* nouvelleSociete, setNouvelleSociete, */ 
                             Créer une Société
                         </button>
                     </div>
-                    <div className="col-md-3">
-                        <button className="btn btn-success col-12 m-2 " type="button" aria-expanded="false" onClick={() => handleActionChange('modifier')}>
-                            Modifier une Société
-                        </button>
-                    </div>
-                    <div className="col-md-3">
-                        <button className="btn btn-danger col-12 m-2 " type="button" aria-expanded="false" onClick={() => handleActionChange('supprimer')}>
-                            Supprimer une Société
-                        </button>
-                    </div>
+
                 </div>
             </div>
+
+
             <div className="conexion">
                 <div className="col-md-9 ibox-content column con-b">
                     <p align="center">
@@ -108,6 +97,8 @@ const DashboardRecruteurSociete = ({ /* nouvelleSociete, setNouvelleSociete, */ 
                     {composantAffiche}
                 </div>
             </div>
+
+
         </>
     );
 }

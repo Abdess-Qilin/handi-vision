@@ -33,7 +33,7 @@ import SupprimerElementRecruteur from './compenents/views/SupprimerElement/Suppr
 const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
-    // <>
+
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<ConnexionBis />} />
@@ -52,3 +52,6 @@ root.render(
     </BrowserRouter>
 
 );
+
+
+

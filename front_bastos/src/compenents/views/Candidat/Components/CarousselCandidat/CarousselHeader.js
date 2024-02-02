@@ -104,7 +104,7 @@ const CarousselCandidatH = () => {
             <div>
                 <Navbar
                     role="navigation"
-                    aria-label="Menu de navigation"
+                    aria-label="Menu de navigation principale"
                     bg="dark"
                     variant="dark"
                     expand="lg"
@@ -113,48 +113,80 @@ const CarousselCandidatH = () => {
                         aria-controls="basic-navbar-nav"
                         onClick={handleNavToggle}
                         aria-expanded={expanded}
-                        label="Ouvrir le menu pour naviguer" />
+                        aria-label="Ouvrir le menu pour naviguer" />
                     <Navbar.Collapse
                         id="basic-navbar-nav"
                         className={expanded ? "show" : ""}>
                         <Nav
                             className="d-flex justify-content-between col-12">
                             <div>
-                                <Button variant="primary" className={`m-1 ${selectedButton === "Profil" ? "active" : ""}`} block="true" aria-label="Voir mon Profil" onClick={() => handleButtonClick("Profil")}>
+                                {/* Les boutons ont maintenant des étiquettes plus descriptives pour les lecteurs d'écran */}
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "Profil" ? "active" : ""}`}
+                                    block="true" aria-label="Consulter mon Profil"
+                                    onClick={() => handleButtonClick("Profil")}>
                                     Mon Profil
                                 </Button>
 
-                                <Button variant="primary" className={`m-1 ${selectedButton === "FormCompetenceCandidat" ? "active" : ""}`} block="true" aria-label="Mettre à jour mes compétences" onClick={() => handleButtonClick("FormCompetenceCandidat")}>
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "FormCompetenceCandidat" ? "active" : ""}`}
+                                    block="true" aria-label="Mettre à jour mes compétences professionnelles"
+                                    onClick={() => handleButtonClick("FormCompetenceCandidat")}>
                                     Mes Compétences
                                 </Button>
 
-                                <Button variant="primary" className={`m-1 ${selectedButton === "Documents" ? "active" : ""}`} block="true" aria-label="Uploader mes documents" onClick={() => handleButtonClick("Documents")}>
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "Documents" ? "active" : ""}`}
+                                    block="true" aria-label="Uploader et gérer mes documents personnels"
+                                    onClick={() => handleButtonClick("Documents")}>
                                     Mes Documents
                                 </Button>
 
-                                <Button variant="primary" className={`m-1 ${selectedButton === "Offres" ? "active" : ""}`} block="true" aria-label="Voir les Offres" onClick={() => handleButtonClick("Offres")}>
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "Offres" ? "active" : ""}`}
+                                    block="true" aria-label="Rechercher des offres d'emploi"
+                                    onClick={() => handleButtonClick("Offres")}>
                                     Rechercher une Offre
                                 </Button>
 
-                                <Button variant="primary" className={`m-1 ${selectedButton === "MesOffres" ? "active" : ""}`} block="true" aria-label="Voir mes Offres favories" onClick={() => handleButtonClick("MesOffres")}>
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "MesOffres" ? "active" : ""}`}
+                                    block="true" aria-label="Voir mes offres d'emploi favorites"
+                                    onClick={() => handleButtonClick("MesOffres")}>
                                     Mes Favoris
                                 </Button>
 
-                                <Button variant="primary" className={`m-1 ${selectedButton === "MesOffresBIS" ? "active" : ""}`} block="true" aria-label="Voir les offres qui match avec mon profil" onClick={() => handleButtonClick("MesOffresBIS")}>
-                                    Mes Match
+                                <Button
+                                    variant="primary"
+                                    className={`m-1 ${selectedButton === "MesOffresBIS" ? "active" : ""}`}
+                                    block="true" aria-label="Voir les offres d'emploi correspondant à mon profil"
+                                    onClick={() => handleButtonClick("MesOffresBIS")}>
+                                    Mes Matchs
                                 </Button>
                             </div>
-                            <Button variant="danger" className={`m-1 ${selectedButton === "Déconnexion" ? "active" : ""}`} block="true" aria-label="Deconnexion" onClick={handleLogout}>
-                                Deconnexion
+                            <Button
+                                variant="primary"
+                                className={`m-1 ${selectedButton === "Déconnexion" ? "active" : ""} button-focus`}
+                                block="true" aria-label="Se déconnecter du système"
+                                onClick={handleLogout}>
+                                Déconnexion
                             </Button>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-            </div >
+            </div>
             <CarousselCandidat />
             <div className="mt-4">{renderSelectedContent()}</div>
         </>
     );
+
+
 };
 
 export default CarousselCandidatH;

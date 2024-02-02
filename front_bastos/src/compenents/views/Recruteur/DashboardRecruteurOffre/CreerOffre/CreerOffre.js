@@ -245,6 +245,21 @@ function CreerOffre({ /*societes,*/ userStatut }) {
                       aria-label="Saisissez l'expérience requise en années"
                     />
                   </div>
+                  <div className="col-md-4">
+                    <label htmlFor="experience" className="form-label btn btn-primary col-12">
+                      Politique de télétravail
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control mb-2"
+                      id="experience"
+                      name="experience"
+                      value={nouvelleOffre.politique_teletravail}
+                      onChange={handleChange}
+                      required
+                      aria-label="Saisissez l'expérience requise en années"
+                    />
+                  </div>
                 </div>
                 <div className="row">
                   <div className="row">

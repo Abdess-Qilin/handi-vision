@@ -6,8 +6,6 @@ import User from "../models/user.js";
 const jobOfferController = {
     setJobOffer: async function (req, res) {
         const data = req.body;
-        console.log(data)
-
         try {
             const newJobOffer = await JobOffer.create({
                 poste: data.poste,

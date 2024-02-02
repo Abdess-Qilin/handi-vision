@@ -25,19 +25,18 @@ code_role 4 => administarteur */
 
 router.post('/api/user/register', usersController.setUser);
 /* router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), usersController.uploadFile); */
-
-
 router.post('/api/users/login', authController.login);
+
 router.get('/api/users', jwtGuard, roleCheck([3, 4]), usersController.getUsers);
-router.get('/api/me', jwtGuard, authController.me);
-router.patch('/api/me/update', jwtGuard, updateController.updateUser);
-router.delete('/api/me/deleteprofile', jwtGuard, usersController.deleteProfile);
+router.get('/api/me', jwtGuard, roleCheck([2, 3, 4]), authController.me);
+router.patch('/api/me/update', jwtGuard, roleCheck([2, 3]), updateController.updateUser);
+router.delete('/api/me/deleteprofile', jwtGuard, roleCheck([2, 3]), usersController.deleteProfile);
 router.post('/api/company/register', jwtGuard, roleCheck([3, 4]), companiesController.setCompany);
 router.get('/api/companies', jwtGuard, roleCheck([4]), companiesController.getCompanies);
-router.get('/api/companies/me', jwtGuard, companiesController.getUserCompanies);
-router.post('/api/user/joboffer', jwtGuard, jobOfferController.setJobOffer);
+router.get('/api/companies/me', jwtGuard, roleCheck([3, 4]), companiesController.getUserCompanies);
+router.post('/api/user/joboffer', jwtGuard, roleCheck([3]), jobOfferController.setJobOffer);
 router.get('/api/joboffers', jwtGuard, roleCheck([2, 3, 4]), jobOfferController.getJobOffers);
-router.get('/api/joboffers/me', jwtGuard, jobOfferController.getUserJobOffers);
+router.get('/api/joboffers/me', jwtGuard, roleCheck([3, 4]), jobOfferController.getUserJobOffers);
 router.get('/api/admin/getusers', jwtGuard, roleCheck([4]), adminController.getUsers);
 router.patch('/api/admin/updateuser', jwtGuard, roleCheck([4]), adminController.updateUser);
 router.delete('/api/admin/deleteuser', jwtGuard, roleCheck([4]), adminController.deleteUser);
@@ -63,13 +62,13 @@ router.get('/api/admin/getcompanies/:statut', jwtGuard, roleCheck([4]), adminCon
 router.get('/api/admin/getcompanybyjoboffer/:codecompany', jwtGuard, roleCheck([4]), adminController.getCompanyByJobOffer);
 
 //// upload et recuperation de fichier
-router.post('/api/uploadFile', jwtGuard, upload.single('rqth'), uploadController.uploadFile);
+router.post('/api/uploadFile', jwtGuard, roleCheck([2]), upload.single('rqth'), uploadController.uploadFile);
 router.get('/downloadFile/:candidatId', jwtGuard, roleCheck([2, 3, 4]), uploadController.getFile);
 
-router.post('/api/upload/profile/photo', jwtGuard, uploadProfilePicture.single('photo'), uploadController.uploadProfilePicture);
-router.get('/download/profile/photo/:userId', /* jwtGuard, roleCheck([2, 4]), */ uploadController.getprofilePhoto);
+router.post('/api/upload/profile/photo', jwtGuard, roleCheck([2, 3]), uploadProfilePicture.single('photo'), uploadController.uploadProfilePicture);
+router.get('/download/profile/photo/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getprofilePhoto);
 
-router.post('/api/upload/cv', jwtGuard, uploadcv.single('cv'), uploadController.uploadcv);
+router.post('/api/upload/cv', jwtGuard, roleCheck([2]), uploadcv.single('cv'), uploadController.uploadcv);
 router.get('/download/cv/:userId', jwtGuard, roleCheck([2, 4]), uploadController.getUserCv);
 
 

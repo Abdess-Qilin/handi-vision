@@ -21,21 +21,22 @@ const ConnexionBis = () => {
     mot_de_passe: ''
   })
   const [userId, setUserId] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
     try {
-      // Créez un objet contenant l'e-mail et le mot de passe saisis par l'utilisateur
+      // objet contenant l'e-mail et le mot de passe saisis par l'utilisateur
 
 
-      // Effect uez une requête POST pour envoyer les informations d'authentification au backend
+      // requête POST pour envoyer les informations d'authentification au backend
       const response = await fetch(`${apiUrl}/api/users/login`, {
         method: 'POST', // Utilisez POST pour envoyer les données
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), // Convertissez l'objet en JSON et envoyez-le dans le corps de la requête
+        body: JSON.stringify(formData), // Convertir l'objet en JSON et envoyez-le dans le corps de la requête
       });
 
       if (response.status === 200) {
@@ -63,15 +64,12 @@ const ConnexionBis = () => {
         }
 
         // Vous pouvez rediriger l'utilisateur vers une autre page ici si nécessaire
-      } else if (response.status === 401) {
-        // Identifiants incorrects
-        console.log('Identifiants incorrects');
       } else {
-        // Gérer d'autres cas d'erreur
-        console.log('Erreur de connexion');
+        // Identifiants incorrects
+        setErrorMessage("Identifiants incorrects");
       }
     } catch (error) {
-      console.log('Fetch error: ', error);
+      setErrorMessage("Problème technique lors de la tentative de connexion.");
     }
   };
 
@@ -106,20 +104,40 @@ const ConnexionBis = () => {
           <p align="center">
             <img src={logo} alt="Handi-Vision.fr, un portail pour favoriser l'insertion" width="80" />
           </p>
-          <form method="POST" className="m-t" role="form" action="index.html" onSubmit={handleSubmit}>
+          <form method="POST"
+            className="m-t"
+            role="form" a
+            ction="index.html"
+            onSubmit={handleSubmit}>
             <div className="" id="form">
               <label htmlFor="email" className="btn btn-primary mb-3" tabIndex="0">
                 Votre email
               </label>
               <p tabIndex="0" className="form-group mb-3">(exemple : nom@exemple.com)</p>
-              <input name="email" type="email" className="form-control mb-3" id="email" aria-label="Saisir ici votre email" placeholder='Saisir ici votre email' required onChange={handleInputChange} />
+              <input name="email"
+                type="email"
+                className="form-control mb-3"
+                id="email"
+                aria-label="Saisir ici votre email"
+                placeholder='Saisir ici votre email'
+                required onChange={handleInputChange} />
             </div>
             <div className="">
               <label htmlFor="inputPassword" className="mb-3 btn btn-primary" tabIndex="0">
                 Votre mot de passe
               </label>
-              <input name="mot_de_passe" type="password" className="form-control mb-3" id="inputPassword" aria-label="Saisir ici votre mot de passe" required autoComplete="current-password" onChange={handleInputChange} />
+              <input
+                name="mot_de_passe"
+                type="password"
+                className="form-control mb-3"
+                id="inputPassword"
+                aria-label="Saisir ici votre mot de passe"
+                required autoComplete="current-password"
+                onChange={handleInputChange} />
             </div>
+            {errorMessage && <div className="alert alert-danger" role="alert" tabIndex="0">
+              {errorMessage}
+            </div>}
             <button type="submit" className="btn btn-primary btn-block maxwidth mb-3" tabIndex="0" >
               Se connecter
             </button>

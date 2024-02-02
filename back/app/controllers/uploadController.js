@@ -5,6 +5,35 @@ import User from '../models/user.js';
 
 const uploadController = {
 
+    /*  uploadFile: async function (req, res) {
+         if (req.file) {
+             console.log('Fichier téléchargé :', req.file);
+             const fileName = req.file.filename;
+ 
+             // Récupérez l'ID de l'utilisateur ou tout autre moyen d'identifier l'utilisateur que vous souhaitez mettre à jour
+             const userId = req.user.id; // Utilisez votre propre méthode d'authentification pour obtenir l'ID de l'utilisateur
+ 
+             try {
+                 // Mettez à jour le champ rqth pour l'utilisateur spécifié
+                 const updatedUser = await User.update(
+                     { rqth: fileName },
+                     {
+                         where: { id: userId },
+                     }
+                 );
+ 
+                 console.log('Champ "rqth" mis à jour pour l\'utilisateur.');
+ 
+ 
+             } catch (error) {
+                 console.error('Erreur lors de la mise à jour du champ "rqth" :', error);
+             }
+         } else {
+             console.log('Aucun fichier téléchargé.');
+         }
+     }, */
+
+
     uploadFile: async function (req, res) {
         if (req.file) {
             console.log('Fichier téléchargé :', req.file);
@@ -23,15 +52,19 @@ const uploadController = {
                 );
 
                 console.log('Champ "rqth" mis à jour pour l\'utilisateur.');
-
+                res.status(200).send('Fichier téléchargé et utilisateur mis à jour');
 
             } catch (error) {
                 console.error('Erreur lors de la mise à jour du champ "rqth" :', error);
+                res.status(500).send('Erreur lors de la mise à jour de l\'utilisateur');
             }
         } else {
             console.log('Aucun fichier téléchargé.');
+            res.status(400).send('Aucun fichier téléchargé');
         }
     },
+
+
 
     getFile: async function (req, res) {
         const candidatId = req.params.candidatId;

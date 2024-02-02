@@ -426,16 +426,29 @@ const OffreCandidat = ({ setSelectedOffers }) => {
                         <div className="row col-12 m-1 p-4">
                             {/* Affichage des offres filtrées */}
                             {filteredOffres.map((offre, index) => (
-                                <div key={index} className={filteredOffres.length > 1 ? "row col-md-4 col-12 m-2 mx-auto" : "mb-4"}>
+                                <div key={index} className={filteredOffres.length > 1 ?
+                                    "row col-md-4 col-12 m-2 mx-auto" : "mb-4"}>
                                     <div className="card col-12 h-100 shadow-sm flex-grow-0">
                                         <div className="card-body flex-grow-1">
                                             <h5 className="card-title fw-bold" >{offre.poste}</h5>
-                                            <p className="card-text">Type de contrat : <span className="fw-bold">{offre.type_de_contrat}</span></p>
-                                            <p className="card-text">Ville : <span className="fw-bold">{offre.lieu_du_poste}</span></p>
-                                            <p className="card-text">Télétravail : <span className="fw-bold">{offre.politique_teletravail}</span></p>
+                                            <p className="card-text">Type de contrat : <span
+                                                className="fw-bold">{offre.type_de_contrat}
+                                            </span>
+                                            </p>
+                                            <p className="card-text">Ville : <span
+                                                className="fw-bold">{offre.lieu_du_poste}
+                                            </span>
+                                            </p>
+                                            <p className="card-text">Télétravail : <span
+                                                className="fw-bold">{offre.politique_teletravail}
+                                            </span>
+                                            </p>
                                         </div>
                                         <div className="card-footer row col-12 mx-auto">
-                                            <Link to={`/details-offre/${offre.id}`} className="btn btn-primary fw-bold mx-auto">Plus d'infos</Link>
+                                            <Link to={`/details-offre/${offre.id}`}
+                                                className="btn btn-primary fw-bold mx-auto">
+                                                Plus d'infos
+                                            </Link>
                                             {/* Bouton pour ajouter ou retirer une offre des favoris */}
                                             <button className="btn mx-auto "
                                                 onClick={(e) => {
