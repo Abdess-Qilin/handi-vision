@@ -141,7 +141,7 @@ const HeadCaroussel = () => {
                   Mes Offres d'emploi
                 </Button>
               </div>
-              <Button variant="danger" className={`m-1 ${selectedButton === "Déconnexion" ? "active" : ""}`} block="true" aria-label="deconnexion" onClick={handleLogout}>
+              <Button variant="primary" className={`m-1 ${selectedButton === "Déconnexion" ? "active" : ""}`} block="true" aria-label="deconnexion" onClick={handleLogout}>
                 Deconnexion
               </Button>
             </Nav>

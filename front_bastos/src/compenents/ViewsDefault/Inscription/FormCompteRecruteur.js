@@ -20,8 +20,8 @@ const FormCompteRecruteur = ({ handleInputChange, formData, errorData }) => {
             id="inputTelephoneP"
             placeholder="06-12-34-56-78"
             aria-label="Téléphone"
-            name="telephone"
-            value={formData.telephone}
+            name="numero_telephone"
+            value={formData.numero_telephone}
             onChange={handleInputChange}
             required
           />
